@@ -29,6 +29,7 @@ public class Produto{
                        " quantidade no estoque:"+quantidade 
                       );
   }
+  
   public void ReporProduto(int quantidade){
     this.quantidade+=quantidade;
   }

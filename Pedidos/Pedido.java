@@ -37,6 +37,7 @@ public class Pedido{
     this.codpedido=cod;
     this.lista=lista;
   }
+  
   private void inicializa(int cod){
     this.codpedido=cod;
     this.lista=new ArrayList<Produto>();
