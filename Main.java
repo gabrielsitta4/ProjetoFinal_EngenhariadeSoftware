@@ -1,12 +1,13 @@
 import Cargos.Caixa;
 import EstadosDeClientes.*;
 import Pessoas.*;
+import FormasDePagamentos.*;
 
 
 class Main {
   public static void main(String[] args) {
-    Cliente p=new Cliente("paula",10202010,new SemCadastro());
-    p.Descrisao();
-    p.FazerPedido();
+    Dinheiro d=new Dinheiro();  
+    d.Pagar(10.52);
+    d.Descrisao();
   }
 }
