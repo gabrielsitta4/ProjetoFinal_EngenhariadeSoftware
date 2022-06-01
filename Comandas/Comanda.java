@@ -28,6 +28,10 @@ public class Comanda{
     return valor;
   }
 
+  public boolean GetQuitada(){
+    return quitada;
+  }
+  
   public void QuitarComanda(FormaDePagamento pag){
     quitada=true;
     forma=pag;
