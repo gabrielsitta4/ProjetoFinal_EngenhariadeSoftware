@@ -21,45 +21,49 @@ public class Cliente extends Pessoa{
     this.nome=nome;
     this.cpf=cpf;
     
-    FazerCadastro();
+    fazerCadastro();
   }
   
-  public void Descrisao(){
+  public void descrisao(){
     System.out.println("Nome do cliente: "+nome+" cpf: "+cpf);
   }
 
-  public void FazerPedido(Pedido pedido){
+  public Estado getEstado(){
+    return estado;
+  }
+  
+  public void fazerPedido(Pedido pedido){
     if(estado instanceof ComCadastro){
-      ObtemComandaAberta().AdicionarPedido(pedido);
-      estado.FazerPedido();
+      obtemComandaAberta().adicionarPedido(pedido);
+      estado.fazerPedido();
     }
       
   }
   
-  public void FazerCadastro(){
+  public void fazerCadastro(){
     if(estado instanceof SemCadastro){
-      estado.FazerCadastro();
+      estado.fazerCadastro();
       estado=new ComCadastro();
     }
   }
   
-  public void Quitardividas(FormaDePagamento pag){
+  public void quitardividas(FormaDePagamento pag){
    if(estado instanceof ComPendencia){
-     ObtemComandaAberta().QuitarComanda(pag);
-     estado.Quitardividas();
+     obtemComandaAberta().quitarComanda(pag);
+     estado.quitardividas();
      estado=new ComCadastro();
    } 
   }
 
-  public void FecharComanda(){
-    if(PossuiComandaDivida()){
+  public void fecharComanda(){
+    if(possuiComandaDivida()){
       estado=new ComPendencia();
     }
   }
   
-  public Comanda ObtemComandaAberta(){
+  public Comanda obtemComandaAberta(){
     Comanda comanda;
-    if(PossuiComandaDivida()){
+    if(possuiComandaDivida()){
       comanda=comandas.get(comandas.size()-1);
     }
     else{
@@ -69,7 +73,7 @@ public class Cliente extends Pessoa{
     return comanda;
   }
 
-  public boolean PossuiComandaDivida(){
+  public boolean possuiComandaDivida(){
     if(comandas.size()>0)
       return !comandas.get(comandas.size()-1).GetQuitada();
     else

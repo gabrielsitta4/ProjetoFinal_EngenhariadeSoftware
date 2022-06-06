@@ -16,14 +16,14 @@ public class Pedido{
     inicializa(ind++);
   }
 
-  public void AdicionarProduto(Produto produto){
+  public void adicionarProduto(Produto produto){
     lista.add(produto);
   }
-  public void AdicionarProduto(ArrayList<Produto> lista){
+  public void adicionarProduto(ArrayList<Produto> lista){
     this.lista.addAll(lista);
     }
 
-  public double ValorDoPedido(){
+  public double valorDoPedido(){
     double valor=0;
     for(Produto t:lista){
       valor+=t.GetValor();

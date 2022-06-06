@@ -1,12 +1,12 @@
 package EstadosDeClientes;
 public class ComPendencia implements Estado{
-  public void FazerPedido(){
+  public void fazerPedido(){
     System.out.println("você não pode fazer pedidos, pois possuia pendencia");
   } 
-  public void FazerCadastro(){
+  public void fazerCadastro(){
     System.out.println("Você já possui um cadastro");
   }
-  public void Quitardividas(){
+  public void quitardividas(){
     System.out.println("dívidas quitadas");
   }
 }

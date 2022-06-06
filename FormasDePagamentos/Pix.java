@@ -7,15 +7,15 @@ public class Pix implements FormaDePagamento{
     valor=0;
   }
   
-  public void Pagar(double valor){
+  public void pagar(double valor){
     this.valor=valor;
   }
   
-  public String Descrisao (){
+  public String descrisao (){
     return "Foi pago com PIX com o valor de "+valor;
   }
 
-  public double GetValorPagamento(){
+  public double getValorPagamento(){
     return valor;
   }
 }

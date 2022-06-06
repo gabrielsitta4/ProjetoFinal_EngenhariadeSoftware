@@ -1,6 +1,6 @@
 package EstadosDeClientes;
 public interface Estado{
-  public void FazerPedido(); 
-  public void FazerCadastro();
-  public void Quitardividas();
+  public void fazerPedido(); 
+  public void fazerCadastro();
+  public void quitardividas();
 }

@@ -4,35 +4,35 @@ import Pedidos.Pedido;
 import FormasDePagamentos.*;
 
 public class Comanda{
-  static int ind;
+
   int codcomada;
   ArrayList<Pedido> pedidos=new ArrayList<Pedido>();
   boolean quitada;
   FormaDePagamento forma;
 
-  public Comanda(){
+  public Comanda(int codcomanda){
     quitada=false;
     pedidos=new ArrayList<Pedido>();
-    codcomada=ind++;
+    this.codcomada=codcomanda;
   } 
   
-  public void AdicionarPedido(Pedido pedido){
+  public void adicionarPedido(Pedido pedido){
     pedidos.add(pedido);
   }
 
-  public double ValorDaComanda(){
+  public double valorDaComanda(){
     double valor =0;
     for(Pedido p : pedidos){
-      valor+=p.ValorDoPedido();
+      valor+=p.valorDoPedido();
     }
     return valor;
   }
 
-  public boolean GetQuitada(){
+  public boolean getQuitada(){
     return quitada;
   }
   
-  public void QuitarComanda(FormaDePagamento pag){
+  public void quitarComanda(FormaDePagamento pag){
     quitada=true;
     forma=pag;
   }

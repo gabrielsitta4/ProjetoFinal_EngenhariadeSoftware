@@ -17,14 +17,14 @@ public class Funcionario extends Pessoa{
   this.cargo=cargo;
  }
   
-  public void Descrisao(){
+  public void descrisao(){
     System.out.println("Nome: "+nome+" cpf: "+cpf+" Cargo: "+cargo.Descrisao());
   }
 
-  public void AbrirComanda(Cliente cliente){
+  public void abrirComanda(Cliente cliente){
     
   }
-  public void FecharComanda(){
+  public void fecharComanda(){
     
   }
 }

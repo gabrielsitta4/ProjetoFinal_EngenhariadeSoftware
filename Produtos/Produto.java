@@ -17,11 +17,11 @@ public class Produto{
     inicaliza(ind++,valor,descrisao,fornecedor,quant);
   }
 
-  public double GetValor(){
+  public double getValor(){
     return this.valor;
   }
   
-  public void DescrisaoCompleta(){
+  public void descrisaoCompleta(){
     System.out.println("codigo: "+codproduto
                        +"valor:"+valor
                        +" descrisao: "+descrisao
@@ -30,11 +30,11 @@ public class Produto{
                       );
   }
   
-  public void ReporProduto(int quantidade){
+  public void reporProduto(int quantidade){
     this.quantidade+=quantidade;
   }
 
-  public ArrayList<Produto> VenderProdutos(int quat){
+  public ArrayList<Produto> venderProdutos(int quat){
     ArrayList<Produto> lista=new ArrayList<Produto>();
 
     if(quat<=quantidade)

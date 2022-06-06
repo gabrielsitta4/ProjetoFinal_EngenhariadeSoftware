@@ -7,15 +7,15 @@ public class Dinheiro implements FormaDePagamento{
     valor=0;
   }
   
-  public void Pagar(double valor){
+  public void pagar(double valor){
     this.valor=valor;
   }
 
-  public double GetValorPagamento(){
+  public double getValorPagamento(){
     return valor;
   }
   
-  public String Descrisao (){
+  public String descrisao (){
     return "Foi pago com Dinheiro com o valor de "+valor;
   }
 }
