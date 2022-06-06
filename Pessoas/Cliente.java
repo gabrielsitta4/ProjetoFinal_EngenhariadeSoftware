@@ -7,6 +7,7 @@ import Comandas.Comanda;
 import Pedidos.Pedido;
 import FormasDePagamentos.*;
 
+
 public class Cliente extends Pessoa{
   private Estado estado=new SemCadastro();
   ArrayList<Comanda> comandas=new ArrayList<Comanda>();
@@ -37,6 +38,8 @@ public class Cliente extends Pessoa{
       obtemComandaAberta().adicionarPedido(pedido);
       estado.fazerPedido();
     }
+    else
+      throw new Exception(estado.descrisao());
       
   }
   
@@ -62,20 +65,16 @@ public class Cliente extends Pessoa{
   }
   
   public Comanda obtemComandaAberta(){
-    Comanda comanda;
-    if(possuiComandaDivida()){
-      comanda=comandas.get(comandas.size()-1);
+    
+    if(!possuiComandaDivida()){
+      comandas.add(new Comanda());   
     }
-    else{
-      comandas.add(new Comanda());
-      comanda=comandas.get(comandas.size()-1);
-    }
-    return comanda;
+    return comandas.get(comandas.size()-1);
   }
 
   public boolean possuiComandaDivida(){
     if(comandas.size()>0)
-      return !comandas.get(comandas.size()-1).GetQuitada();
+      return !comandas.get(comandas.size()-1).getQuitada();
     else
       return false;
   }

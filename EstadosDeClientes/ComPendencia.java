@@ -9,4 +9,8 @@ public class ComPendencia implements Estado{
   public void quitardividas(){
     System.out.println("dívidas quitadas");
   }
+
+  public String descrisao(){
+    return "Cliente inadimplente";
+  }
 }

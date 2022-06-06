@@ -9,4 +9,7 @@ public class ComCadastro implements Estado{
   public void quitardividas(){
     System.out.println("você não possui dívidas ainda");
   }
+  public String descrisao(){
+    return "Cliente cadastrado";
+  }
 }

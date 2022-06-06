@@ -9,4 +9,7 @@ public class SemCadastro implements Estado{
   public void quitardividas(){
     System.out.println("você não possui um cadastro ainda");
   }
+  public String descrisao(){
+    return "Cliente Sem cadastro";
+  }
 }
