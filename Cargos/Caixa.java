@@ -27,7 +27,7 @@ public class Caixa implements Cargo{
       cliente.abrirComanda();
       limparTela();
       System.out.println("Comanda Aberta com sucesso");
-      System.out.println("Fazer o pedido aperte 0")
+      System.out.println("Fazer o pedido aperte 0");
       Scanner ler =new Scanner(System.in);
       if(ler.nextInt()==0)
         fazerPedido(cliente);
@@ -75,8 +75,8 @@ public class Caixa implements Cargo{
       limparTela();
       System.out.println(ex);
       if(cliente.getEstado instanceof SemCadastro ){
-        cliente=cadastarCliente();
-        System.out.println("deseja fazer o pedido 0")
+        cliente=cadastrarCliente();
+        System.out.println("deseja fazer o pedido 0");
         if(leitura.nextInt()==0){
           abrirComanda(cliente);
           clinte.obtemComandaAberta().adicionarPedido(pedido);
@@ -93,7 +93,7 @@ public class Caixa implements Cargo{
   public Cliente buscarCliente(){
     limparTela();
     Scanner ler=new Scanner(System.in);
-    System.out.println("Informe seu cpf")
+    System.out.println("Informe seu cpf");
     int cpf=ler.nextInt();
     
     for(Cliente c:clientes){
