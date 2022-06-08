@@ -12,9 +12,10 @@ public class Cliente extends Pessoa{
   private Estado estado=new SemCadastro();
   ArrayList<Comanda> comandas=new ArrayList<Comanda>();
 
-  public Cliente(String nome,int cpf,Estado estado){
+  public Cliente(String nome,int cpf,int telefone,Estado estado){
     this.nome=nome;
     this.cpf=cpf;
+    this.telefone=telefone;
     this.estado=estado;
   }
   
@@ -31,6 +32,14 @@ public class Cliente extends Pessoa{
 
   public Estado getEstado(){
     return estado;
+  }
+
+  public void abrirComanda(){
+    if(estado instanceof ComCadastro){
+      comandas.add(new Comanda());
+      System.out.println("Comanda Aberta com sucesso");
+    }else
+      throw new Exception(estado.descrisao());
   }
   
   public void fazerPedido(Pedido pedido){
@@ -66,10 +75,11 @@ public class Cliente extends Pessoa{
   
   public Comanda obtemComandaAberta(){
     
-    if(!possuiComandaDivida()){
-      comandas.add(new Comanda());   
-    }
-    return comandas.get(comandas.size()-1);
+    if(possuiComandaDivida()){
+     return comandas.get(comandas.size()-1);
+    }else
+      throw new Exception("Não possui comandas abertas");
+      
   }
 
   public boolean possuiComandaDivida(){

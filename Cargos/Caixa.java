@@ -7,7 +7,9 @@ import Comandas.Comanda;
 import EstadosDeClientes.*;
 
 public class Caixa implements Cargo{
-public void abrirComanda(Cliente cliente){}
+public void abrirComanda(Cliente cliente){
+  if(cliente.)
+}
   public void fazerPedido(Comanda comanda){}
   public String descrisao(){}
   public Cliente buscarCliente(ArrayList<Cliente> cliente){}
