@@ -11,11 +11,23 @@ public class Pedido{
   public Pedido(int codigo,ArrayList<Produto> lista){
     inicializa(codigo,lista);
   }
-
+  
   public Pedido(){
     inicializa(ind++);
   }
 
+  public int getQuantidadeProdutos(){
+    return lista.size();
+  }
+  
+  public int getCodigo(){
+    return codpedido;
+  }
+  
+  public Produto getProduto(int ind){
+    return lista.get(ind);
+  }
+  
   public void adicionarProduto(Produto produto){
     lista.add(produto);
   }
@@ -26,7 +38,7 @@ public class Pedido{
   public double valorDoPedido(){
     double valor=0;
     for(Produto t:lista){
-      valor+=t.GetValor();
+      valor+=t.getValor();
     }
       
     

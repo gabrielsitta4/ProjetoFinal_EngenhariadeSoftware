@@ -6,6 +6,10 @@ public class Dinheiro implements FormaDePagamento{
   public Dinheiro(){
     valor=0;
   }
+
+  public Dinheiro(double valor){
+    this.valor=valor;
+  }
   
   public void pagar(double valor){
     this.valor=valor;

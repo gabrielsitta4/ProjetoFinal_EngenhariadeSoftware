@@ -6,6 +6,9 @@ public class Cartao implements FormaDePagamento{
   public Cartao(){
     valor=0;
   }
+  public Cartao(double valor){
+    this.valor=valor;
+  }
   
   public void pagar(double valor){
     this.valor=valor;

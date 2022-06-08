@@ -19,11 +19,16 @@ public class Cliente extends Pessoa{
     this.estado=estado;
   }
   
-  public Cliente(String nome ,int cpf){
+  public Cliente(String nome ,int cpf,int telefone){
     this.nome=nome;
     this.cpf=cpf;
+    this.telefone=telefone;
     
     fazerCadastro();
+  }
+
+  public int getCPF(){
+    return cpf;
   }
   
   public void descrisao(){
@@ -37,7 +42,6 @@ public class Cliente extends Pessoa{
   public void abrirComanda(){
     if(estado instanceof ComCadastro){
       comandas.add(new Comanda());
-      System.out.println("Comanda Aberta com sucesso");
     }else
       throw new Exception(estado.descrisao());
   }
@@ -67,9 +71,20 @@ public class Cliente extends Pessoa{
    } 
   }
 
+  public int getQuantidadeComandas(){
+    return comandas.size();
+  }
+
+  public Comanda getComanda(int ind){
+    return comandas.get(ind);
+  }
+
+  
+
   public void fecharComanda(){
     if(possuiComandaDivida()){
       estado=new ComPendencia();
+      
     }
   }
   

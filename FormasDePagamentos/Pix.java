@@ -6,6 +6,9 @@ public class Pix implements FormaDePagamento{
   public Pix(){
     valor=0;
   }
+  public Pix(double valor){
+    this.valor=valor;
+  }
   
   public void pagar(double valor){
     this.valor=valor;
