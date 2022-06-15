@@ -10,13 +10,14 @@ public class Produto{
   private String descrisao;
   private String fornecedor;
   private int quantidade;
+  private int quantidademaxima;
 
-  public Produto(int codigo,double valor,String descrisao,String fornecedor,int quant){
-    inicaliza(codigo,valor,descrisao,fornecedor,quant);
+  public Produto(int codigo,double valor,String descrisao,String fornecedor,int quant,int quantidademaxima){
+    inicaliza(codigo,valor,descrisao,fornecedor,quant,quantidademaxima);
   }
   
-  public Produto(double valor,String descrisao,String fornecedor,int quant){
-    inicaliza(ind++,valor,descrisao,fornecedor,quant);
+  public Produto(double valor,String descrisao,String fornecedor,int quant,int quantidademaxima){
+    inicaliza(ind++,valor,descrisao,fornecedor,quant,quantidademaxima);
   }
 
   public int getCodigo(){
@@ -72,12 +73,13 @@ public class Produto{
     return lista;
   }
   
-  private void inicaliza(int codigo,double valor,String descrisao,String fornecedor,int quant){
+  private void inicaliza(int codigo,double valor,String descrisao,String fornecedor,int quant,int quantidademaxima){
     this.valor=valor;
     this.codproduto=codigo;
     this.descrisao=descrisao;
     this.fornecedor=fornecedor;
     this.quantidade=quant;
+    this.quantidademaxima=quantidademaxima;
   }
   
 }

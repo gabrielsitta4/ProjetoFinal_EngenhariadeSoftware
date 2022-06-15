@@ -2,7 +2,7 @@
 
 package Pessoas;
 import EstadosDeClientes.*;
-import java.util.ArrayList;
+import java.util.*;
 import Comandas.Comanda;
 import Pedidos.Pedido;
 import FormasDePagamentos.*;
@@ -31,8 +31,8 @@ public class Cliente extends Pessoa{
     return cpf;
   }
   
-  public void descrisao(){
-    System.out.println("Nome do cliente: "+nome+" cpf: "+cpf);
+  public String descrisao(){
+   return ("Nome do cliente: "+nome+" cpf: "+cpf);
   }
 
   public Estado getEstado(){

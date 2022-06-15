@@ -7,6 +7,7 @@ public class Funcionario extends Pessoa{
   private String endereco;
   private String email;
   private Cargo cargo;
+  
   public Funcionario(String nome,int cpf,int telefone,int rg,String endereco,String email,Cargo cargo){
   this.cpf=cpf;
   this.nome=nome;
@@ -17,10 +18,13 @@ public class Funcionario extends Pessoa{
   this.cargo=cargo;
  }
   
-  public void descrisao(){
-    System.out.println("Nome: "+nome+" cpf: "+cpf+" Cargo: "+cargo.Descrisao());
+  public String descrisao(){
+    return "Nome: "+nome+" cpf: "+cpf+" Cargo: "+cargo.descrisao();
   }
 
+  public int getCPF(){
+    return cpf;
+  }
   public void abrirComanda(Cliente cliente){
     
   }
