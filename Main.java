@@ -6,6 +6,6 @@ import FormasDePagamentos.*;
 
 class Main {
   public static void main(String[] args) {
-    
+
   }
 }
