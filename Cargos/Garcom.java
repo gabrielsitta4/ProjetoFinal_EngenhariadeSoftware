@@ -17,12 +17,42 @@ public class Garcom implements Cargo{
     //O caixa precisa ter acesso ao estoque e aos clintes;
   }
 
-  public void abrirComanda(Cliente cliente){
-   System.out.println("Garçom não abre comanda, vá até o caixa seu nóia"); 
+  public void menuDeOpcoes(){
+    limparTela();
+    print("Comandos que a caixa pode executar:");
+    print("0 para sair ");
+    print("1 para fazer pedido");
+    Scanner ler=new Scanner(System.in);
+    switch(ler.nextInt()){
+      case 0:
+        print("saindo da tela");
+        break;
+      case 1:
+        fazerPedido(buscarCliente());
+        break;
+    }
   }
+
+  public Cliente cadastrarCliente(){
+    limparTela();
+    Scanner ler=new Scanner(System.in);
+    System.out.println("Nome: ");
+    String nome=ler.nextLine();
+    System.out.println("CPF: ");
+    int cpf=ler.nextInt();
+    System.out.println("Telefone: ");
+    int telefone=ler.nextInt();
+    clientes.add(new Cliente(nome,cpf,telefone));
+    return new Cliente(nome,cpf,telefone);
+  }
+
   
-  public void fazerPedido(Cliente clinte){
+  public void fazerPedido(Cliente cliente){
     Pedido pedido = new Pedido();
+    if(!(cliente.getEstado() instanceof ComCadastro)){
+      throw new Exception("Cliente com cadastro com falha");
+    }
+    
     Scanner leitura = new Scanner(System.in);
     
     try{
@@ -31,11 +61,11 @@ public class Garcom implements Cargo{
         //mostra a seleção de produtos
         limparTela();
         menuMostraProdutos();
-        System.out.println("Digite o codigo do produto ou digite -1 para sair");
+        print("Digite o codigo do produto ou digite -1 para sair");
         ind=leitura.nextInt();
         for(Produto t:estoque){
           if(t.getCodigo()==ind){
-            System.out.println("Digite a quantidade");
+            print("Digite a quantidade");
             //metodo colocar no carinho não retira do estoque
             //mas deixa guardado esperando a confirmação
             pedido.adicionarProduto(t.colocarNoCarinho(leitura.nextInt()));
@@ -44,22 +74,21 @@ public class Garcom implements Cargo{
       }while(ind!=0);
       
       limparTela();
-      System.out.println("aperte 1 para confirmar");
+      print("aperte 1 para confirmar");
       if(leitura.nextInt()==1){
         ArrayList<Produto> produtos=new ArrayList<Produto>();
         for(int i=0;i<pedido.getQuantidadeProdutos();i++){
-
           produtos.addAll(estoque.get(pedido.getProduto(i).getCodigo()).venderProdutos(1));
           
         }
         pedido=new Pedido(pedido.getCodigo(),produtos);
-        clinte.obtemComandaAberta().adicionarPedido(pedido);
+        cliente.obtemComandaAberta().adicionarPedido(pedido);
         }
         
     }catch(Exception ex){
       limparTela();
-      System.out.println(ex);
-      System.out.println("Permissão não concessida");
+      print(ex.getMessage());
+      print("Permissão não concessida");
       
       
     }
@@ -68,6 +97,7 @@ public class Garcom implements Cargo{
   public String descrisao(){
     return "Caixa";
   }
+  
   public Cliente buscarCliente(){
     limparTela();
     Scanner ler=new Scanner(System.in);
@@ -79,8 +109,7 @@ public class Garcom implements Cargo{
         return c;
       }
     }
-    System.out.println("não existe Clinte Cadastrado com esse CFP");
-    throw new Exception("Erro em relação ao garçom, não tem a permissão necessária para cadastrar cliente");
+    throw new Exception("Cliente não cadastrado");
   }
   
   public Comanda buscarComandaPorCliente(){
@@ -102,12 +131,6 @@ public class Garcom implements Cargo{
       throw new Exception("Erro na busca da comanda do cliente: "+cliente.getCPF());
     }
   }
-  
-  public void fecharComanda(Cliente cliente){
-    System.out.println("Garçom nãom pode fechar comanda, mande ao caixa");
-  }
-  
-
  
   private void menuMostraProdutos(){
     for(Produto t:estoque){
@@ -116,6 +139,11 @@ public class Garcom implements Cargo{
   }
 
   private void limparTela(){
-    System("clear");
+    for(int i=0;i<20;i++)
+      print("");
+  }
+  
+  private void print(String conteudo){
+    System.out.println(conteudo);
   }
 }

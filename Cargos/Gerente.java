@@ -3,13 +3,12 @@ import Pessoas.Cliente;
 import Cargos.Cargo;
 
 public class Gerente implements Cargo{
-  public void AbrirComanda(Cliente cliente){
+
+  public void menuDeOpcoes(){
     
   }
-  public String Descrisao(){
+  public String descrisao(){
     return "Gerente";
   }
-  public void FecharComanda(){
-    
-  }
+  
 }
