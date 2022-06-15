@@ -18,18 +18,22 @@ public class Garcom implements Cargo{
   }
 
   public void menuDeOpcoes(){
-    limparTela();
-    print("Comandos que a caixa pode executar:");
-    print("0 para sair ");
-    print("1 para fazer pedido");
-    Scanner ler=new Scanner(System.in);
-    switch(ler.nextInt()){
-      case 0:
-        print("saindo da tela");
-        break;
-      case 1:
-        fazerPedido(buscarCliente());
-        break;
+    try{
+      limparTela();
+      print("Comandos que a caixa pode executar:");
+      print("0 para sair ");
+      print("1 para fazer pedido");
+      Scanner ler=new Scanner(System.in);
+      switch(ler.nextInt()){
+        case 0:
+          print("saindo da tela");
+          break;
+        case 1:
+          fazerPedido(buscarCliente());
+          break;
+      }
+    }catch(Exception ex){
+      print(ex.getMessage());
     }
   }
 
@@ -47,7 +51,7 @@ public class Garcom implements Cargo{
   }
 
   
-  public void fazerPedido(Cliente cliente){
+  public void fazerPedido(Cliente cliente)throws Exception{
     Pedido pedido = new Pedido();
     if(!(cliente.getEstado() instanceof ComCadastro)){
       throw new Exception("Cliente com cadastro com falha");
@@ -98,7 +102,7 @@ public class Garcom implements Cargo{
     return "Caixa";
   }
   
-  public Cliente buscarCliente(){
+  public Cliente buscarCliente()throws Exception{
     limparTela();
     Scanner ler=new Scanner(System.in);
     System.out.println("Informe seu cpf");
@@ -112,7 +116,7 @@ public class Garcom implements Cargo{
     throw new Exception("Cliente não cadastrado");
   }
   
-  public Comanda buscarComandaPorCliente(){
+  public Comanda buscarComandaPorCliente()throws Exception{
     Scanner ler=new Scanner(System.in);
     Cliente cliente = buscarCliente();
     try{

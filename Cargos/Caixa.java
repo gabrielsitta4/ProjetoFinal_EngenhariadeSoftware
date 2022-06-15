@@ -17,25 +17,29 @@ public class Caixa implements Cargo{
   }
 
   public void menuDeOpcoes(){
-    limparTela();
-    print("Comandos que a caixa pode executar:");
-    print("0 para sair ");
-    print("1 para abrir uma comanda");
-    print("2 para fechar uma comanda");
-    print("3 para cadastrar um cliente");
-    Scanner ler=new Scanner(System.in);
-    switch(ler.nextInt()){
-      case 0:
-        print("saindo da tela");
-        break;
-      case 1:
-        abrirComanda(buscarCliente());
-        break;
-      case 2:
-        fecharComanda(buscarCliente());
-        break;
-      case 3:
-        cadastrarCliente();
+    try{
+      limparTela();
+      print("Comandos que a caixa pode executar:");
+      print("0 para sair ");
+      print("1 para abrir uma comanda");
+      print("2 para fechar uma comanda");
+      print("3 para cadastrar um cliente");
+      Scanner ler=new Scanner(System.in);
+      switch(ler.nextInt()){
+        case 0:
+          print("saindo da tela");
+          break;
+        case 1:
+          abrirComanda(buscarCliente());
+          break;
+        case 2:
+          fecharComanda(buscarCliente());
+          break;
+        case 3:
+          cadastrarCliente();
+      }
+    }catch(Exception ex){
+      print(ex.getMessage());
     }
   }
 
@@ -53,7 +57,7 @@ public class Caixa implements Cargo{
     return "Caixa";
   }
   
-  public Cliente buscarCliente(){
+  public Cliente buscarCliente()throws Exception{
     limparTela();
     Scanner ler=new Scanner(System.in);
     print("Informe seu cpf");
@@ -69,7 +73,7 @@ public class Caixa implements Cargo{
      
   }
   
-  public Comanda buscarComandaPorCliente(){
+  public Comanda buscarComandaPorCliente()throws Exception{
     Scanner ler=new Scanner(System.in);
     try{
       Cliente cliente = buscarCliente();
@@ -95,16 +99,20 @@ public class Caixa implements Cargo{
     int ind=0;
     System.out.println("Deseja pagar com pix 0 ou cartão 1 ou dinheiro (caso default)");
     ind=ler.nextInt();
-    double valor =cliente.obtemComandaAberta().valorDaComanda();
-    switch(ind){
-      case 0:
-        cliente.obtemComandaAberta().quitarComanda(new Pix(valor));
-        break;
-      case 1:
-        cliente.obtemComandaAberta().quitarComanda(new Cartao(valor));
-        break;
-      default:
-        cliente.obtemComandaAberta().quitarComanda(new Dinheiro(valor));
+    try{
+      double valor =cliente.obtemComandaAberta().valorDaComanda();
+      switch(ind){
+        case 0:
+          cliente.obtemComandaAberta().quitarComanda(new Pix(valor));
+          break;
+        case 1:
+          cliente.obtemComandaAberta().quitarComanda(new Cartao(valor));
+          break;
+        default:
+          cliente.obtemComandaAberta().quitarComanda(new Dinheiro(valor));
+      }
+    }catch(Exception ex){
+    
     }
   }
   

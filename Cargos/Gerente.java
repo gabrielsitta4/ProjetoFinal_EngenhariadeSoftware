@@ -1,6 +1,7 @@
 package Cargos;
 import Pessoas.*;
 import java.util.*;
+
 import Cargos.*;
 import Produtos.*;
 
@@ -25,6 +26,7 @@ public class Gerente implements Cargo{
     print("2 demitir");
     
     Scanner ler=new Scanner(System.in);
+    try{
     switch(ler.nextInt()){
       case 0:
         print("saindo");
@@ -35,6 +37,8 @@ public class Gerente implements Cargo{
       case 2: 
         demetirFuncionario(buscarFuncionario());
         break;
+    }}catch(Exception ex){
+      print(ex.getMessage());
     }
   }
   
@@ -42,7 +46,7 @@ public class Gerente implements Cargo{
     return "Gerente";
   }
 
-  public Funcionario buscarFuncionario(){
+  public Funcionario buscarFuncionario()throws Exception{
     limpaTela();
     print("informe o cpf: ");
     int cpf=ler.nextInt();
@@ -79,9 +83,9 @@ public class Gerente implements Cargo{
 
 
     print("Caixa 0");
-    print("Gerente 1");
-    print("Garçom 2");
-    print("Repositor 3");
+    print("Garçom 1");
+    print("Repositor 2");
+    print("Gerente 3");
 
     Cargo cargo;
     
@@ -89,14 +93,17 @@ public class Gerente implements Cargo{
       case 0:
         cargo=new Caixa(clientes);
         break;
-      case 1 :
+      case 3 :
         cargo=new Gerente(funcionarios,produtos,clientes);
         break;
       case 2 :
-        cargo=new Garcom(produtos,clientes);
-        break ;
-      case 3 :
         cargo=new Repositor(produtos);
+        break ;
+      case 1 :
+        cargo=new Garcom(produtos,clientes);
+        break;
+      default:
+          cargo =new  Garcom(produtos,clientes);
         break;
     }
     

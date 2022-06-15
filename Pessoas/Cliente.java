@@ -3,6 +3,7 @@
 package Pessoas;
 import EstadosDeClientes.*;
 import java.util.*;
+import java.lang.*;
 import Comandas.Comanda;
 import Pedidos.Pedido;
 import FormasDePagamentos.*;
@@ -39,14 +40,14 @@ public class Cliente extends Pessoa{
     return estado;
   }
 
-  public void abrirComanda(){
+  public void abrirComanda()throws Exception{
     if(estado instanceof ComCadastro){
       comandas.add(new Comanda());
     }else
       throw new Exception(estado.descrisao());
   }
   
-  public void fazerPedido(Pedido pedido){
+  public void fazerPedido(Pedido pedido)throws Exception{
     if(estado instanceof ComCadastro){
       obtemComandaAberta().adicionarPedido(pedido);
       estado.fazerPedido();
@@ -63,12 +64,16 @@ public class Cliente extends Pessoa{
     }
   }
   
-  public void quitardividas(FormaDePagamento pag){
-   if(estado instanceof ComPendencia){
+  public void quitardividas(FormaDePagamento pag)throws Exception{
+   try{
+    if(estado instanceof ComPendencia){
      obtemComandaAberta().quitarComanda(pag);
      estado.quitardividas();
      estado=new ComCadastro();
    } 
+   }catch(Exception ex){
+     throw ex;
+   }
   }
 
   public int getQuantidadeComandas(){
@@ -88,7 +93,7 @@ public class Cliente extends Pessoa{
     }
   }
   
-  public Comanda obtemComandaAberta(){
+  public Comanda obtemComandaAberta()throws Exception{
     
     if(possuiComandaDivida()){
      return comandas.get(comandas.size()-1);

@@ -17,7 +17,7 @@ public class Repositor implements Cargo{
     print("0 sair ");
     print("1 cadastrar novo produto");
     print("2 Repor produtos");
-
+    try{
     switch(ler.nextInt()){
       case 0:
         print("Saindo");
@@ -29,7 +29,10 @@ public class Repositor implements Cargo{
         repor(buscarProduto());
         break;
     }
-    
+    }catch(Exception ex){
+      print(ex.getMessage());
+    }
+  
   }
   public void cadastrarProduto(){
     limpaTela();
@@ -47,7 +50,7 @@ public class Repositor implements Cargo{
     print("produto cadastrado com sucesso");
   }
 
-  public void repor(Produto produto){
+  public void repor(Produto produto)throws Exception{
     limpaTela();
     print("informe a quantidade: ");
     int quantidade=ler.nextInt();
@@ -55,7 +58,7 @@ public class Repositor implements Cargo{
     print("Produto foi reposto");
   }
   
-  public Produto buscarProduto(){
+  public Produto buscarProduto()throws Exception{
     limpaTela();
     mostraProduto();
     print("digite o codigo do produto");
