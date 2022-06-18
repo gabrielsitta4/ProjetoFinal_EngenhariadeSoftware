@@ -66,7 +66,7 @@ public class Garcom implements Cargo{
   }
   
   public String descrisao(){
-    return "Caixa";
+    return "Garçom";
   }
   
   public Cliente buscarCliente()throws Exception{

@@ -48,6 +48,7 @@ class Main {
       print("11 repor");
       print("12 Mudar de funcionario");
       print("13 cadastras produto");
+      print("14 buscar produto");
       ind=ler.nextInt();
        limpaTela();
       try{
@@ -61,7 +62,7 @@ class Main {
             print(funcionario.buscarCliente().descrisao());
             break;
           case 3:
-            //print(funcionario.buscarComandaPorCliente().getCodigo());
+            print(funcionario.buscarComandaPorCliente().descrisao());
             break;
           case 4:
             funcionario.fecharComanda(funcionario.buscarCliente());
@@ -70,7 +71,8 @@ class Main {
             funcionario.cadastrarCliente();
             break;
           case 6:
-            
+            print("digite o codigo da comanda");
+              funcionario.buscarComandaCodigo(ler.nextInt()).descrisao();
             break;
           case 7:
             funcionario.fazerPedido(funcionario.buscarCliente());
@@ -93,7 +95,10 @@ class Main {
           case 13:
             funcionario.cadastrarProduto();
             break;
-            
+
+          case 14:
+            funcionario.buscarProduto();
+            break;
        }
        
       

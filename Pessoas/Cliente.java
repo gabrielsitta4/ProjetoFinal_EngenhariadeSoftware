@@ -124,16 +124,25 @@ public class Cliente extends Pessoa{
   public Comanda obtemComandaAberta()throws Exception{
     
     if(possuiComandaDivida()){
-     return comandas.get(comandas.size()-1);
-    }else
-      throw new Exception("Não possui comandas abertas");
+      for(Comanda c: comandas){
+        if(!c.getQuitada()){
+          return c;
+        }    
+      }
+    }
+    throw new Exception("Não possui comandas abertas");
       
   }
 
   public boolean possuiComandaDivida(){
+    boolean verifica=false;
     if(comandas.size()>0)
-      return !comandas.get(comandas.size()-1).getQuitada();
-    else
-      return false;
+      for(Comanda c: comandas){
+        if(!c.getQuitada()){
+          verifica=true;
+          break;
+        }    
+      }
+    return verifica;
   }
 }

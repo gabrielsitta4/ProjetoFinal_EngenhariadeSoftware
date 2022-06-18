@@ -14,36 +14,21 @@ public class Repositor implements Cargo{
     this.produtos=produto;
     ler=new Scanner(System.in);
   }
-  public void menuDeOpcoes(){
-    limpaTela();
-    print("0 sair ");
-    print("1 cadastrar novo produto");
-    print("2 Repor produtos");
-    try{
-    switch(ler.nextInt()){
-      case 0:
-        print("Saindo");
-        break;
-      case 1:
-        cadastrarProduto();
-        break;
-      case 2:
-        repor(buscarProduto());
-        break;
-    }
-    }catch(Exception ex){
-      print(ex.getMessage());
-    }
   
   }
   public void cadastrarProduto(){
     limpaTela();
     print("informe o valor do produto:");
     double valor=ler.nextFloat();
+    
+    String descrisao="";
     print("informe a descrisão");
-    String descrisao=ler.nextLine();
-    print("Fornecedor: ");
-    String fornecedor=ler.nextLine();
+    do{descrisao=ler.nextLine();}while(descrisao!="");
+    
+    String fornecedor="";
+    print("informe a descrisão");
+    do{fornecedor=ler.nextLine();}while(fornecedor!="");
+    
     print("quantidade");
     int quant=ler.nextInt();
     print("quantidade máxima");

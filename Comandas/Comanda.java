@@ -34,10 +34,15 @@ public class Comanda{
     return this.codcomada;
   }
 
+  public String descrisao(){
+    return "codigo :"+codcomada+" valor: "+valorDaComanda();
+  }
   
   public boolean getQuitada(){
     return quitada;
   }
+
+
   
   public void quitarComanda(FormaDePagamento pag)throws Exception{
     if(pag.getValorPagamento()==this.valorDaComanda()){
@@ -49,7 +54,7 @@ public class Comanda{
     
 }
 
-  public FormaDePagamento getFormaPagaemnto(){
+  public FormaDePagamento getFormaPagamento(){
     return forma;
   }
 

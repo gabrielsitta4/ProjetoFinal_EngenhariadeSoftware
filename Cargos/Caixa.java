@@ -67,24 +67,26 @@ public class Caixa implements Cargo{
   
   public void fecharComanda(Cliente cliente){
     limparTela();
-    cliente.fecharComanda();
-    
-    Scanner ler=new Scanner(System.in);
-    int ind=0;
-    System.out.println("Deseja pagar com pix 0 ou cartão 1 ou dinheiro (caso default)");
-    ind=ler.nextInt();
     try{
-      double valor =cliente.obtemComandaAberta().valorDaComanda();
-      switch(ind){
-        case 0:
-          cliente.obtemComandaAberta().quitarComanda(new Pix(valor));
-          break;
-        case 1:
-          cliente.obtemComandaAberta().quitarComanda(new Cartao(valor));
-          break;
-        default:
-          cliente.obtemComandaAberta().quitarComanda(new Dinheiro(valor));
-      }
+      cliente.fecharComanda();
+      
+      Scanner ler=new Scanner(System.in);
+      int ind=0;
+      print(cliente.obtemComandaAberta().descrisao());
+      System.out.println("Deseja pagar com pix 0 ou cartão 1 ou dinheiro (caso default)");
+      ind=ler.nextInt();
+      
+        double valor =cliente.obtemComandaAberta().valorDaComanda();
+        switch(ind){
+          case 0:
+            cliente.quitardividas(new Pix(valor));
+            break;
+          case 1:
+            cliente.quitardividas(new Cartao(valor));
+            break;
+          default:
+            cliente.quitardividas(new Dinheiro(valor));
+        }
     }catch(Exception ex){
       print(ex.getMessage());
     }
