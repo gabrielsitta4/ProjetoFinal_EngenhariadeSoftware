@@ -1,7 +1,7 @@
 package Cargos;
 import Pessoas.*;
 import java.util.*;
-
+import Comandas.*;
 import Cargos.*;
 import Produtos.*;
 
@@ -19,28 +19,7 @@ public class Gerente implements Cargo{
    ler=new Scanner(System.in);
   }
   
-  public void menuDeOpcoes(){
-    limpaTela();
-    print("0 para sair ");
-    print("1 para cadastrar funcionário");
-    print("2 demitir");
-    
-    Scanner ler=new Scanner(System.in);
-    try{
-    switch(ler.nextInt()){
-      case 0:
-        print("saindo");
-        break;
-      case 1:
-        cadastrarFuncionario();
-        break;
-      case 2: 
-        demetirFuncionario(buscarFuncionario());
-        break;
-    }}catch(Exception ex){
-      print(ex.getMessage());
-    }
-  }
+  
   
   public String descrisao(){
     return "Gerente";
@@ -110,6 +89,40 @@ public class Gerente implements Cargo{
     if(funcionarios.add( new Funcionario(nome,cpf, telefone, rg, end, email, cargo))){
       print("funcionário  cadastrado com sucesso");
     }
+  }
+
+   public void abrirComanda(Cliente cliente){
+     print("Chame um caixa");
+   }
+  public Cliente buscarCliente()throws Exception{
+    throw new Exception("Gerente se não se precisa fazer isso");
+  }
+  public Comanda buscarComandaPorCliente()throws Exception{
+    throw new Exception("Gerente se não se precisa fazer isso");
+  }
+  public void fecharComanda(Cliente cliente){
+    print("Gerente se não se precisa fazer isso");
+  }
+  public Cliente cadastrarCliente()throws Exception{
+    throw new Exception("Chama um caixa para executar essa funçao");
+  }
+  public Comanda buscarComandaCodigo(int codigo)throws Exception{
+    throw new Exception("Cargo de gerente não tem permissão pra fazer isso");
+  }
+
+  public void fazerPedido(Cliente cliente)throws Exception{
+    print("Cargo de gerente não tem permissão pra fazer isso");
+  }
+
+
+  public void repor(Produto produto){
+    print("Cargo de gerente não tem permissão pra fazer isso");
+  }
+  public Produto buscarProduto()throws Exception{
+    throw new Exception("Cargo de gerente não tem permissão pra fazer isso");
+  }
+  public void cadastrarProduto(){
+    print("caixa não cadastra produto");
   }
   
   private void limpaTela(){

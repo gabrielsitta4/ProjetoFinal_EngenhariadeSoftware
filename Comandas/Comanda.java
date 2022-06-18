@@ -30,6 +30,11 @@ public class Comanda{
     return valor;
   }
 
+  public int getCodigo(){
+    return this.codcomada;
+  }
+
+  
   public boolean getQuitada(){
     return quitada;
   }
@@ -47,11 +52,20 @@ public class Comanda{
   public FormaDePagamento getFormaPagaemnto(){
     return forma;
   }
+
+  @Override
+  public boolean equals(Object comanda){
+      if(comanda instanceof Comanda){
+        return ((Comanda)comanda).getCodigo()==this.getCodigo();
+      }
+    return false;
+  }
   
   private void incializar(int cod){
     quitada=false;
     pedidos=new ArrayList<Pedido>();
     this.codcomada=cod;
     forma=null;
+  
   }
 }

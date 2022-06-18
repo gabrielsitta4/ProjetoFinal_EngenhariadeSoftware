@@ -1,11 +1,12 @@
 package Cargos;
-import Pessoas.Cliente;
 import Cargos.Cargo;
 import EstadosDeClientes.*;
 import FormasDePagamentos.*;
 import java.util.*;
 import Comandas.Comanda;
 import EstadosDeClientes.*;
+import Pessoas.*;
+import Produtos.*;
 
 public class Caixa implements Cargo{
 
@@ -14,33 +15,6 @@ public class Caixa implements Cargo{
   public Caixa(ArrayList<Cliente> clientes){
     this.clientes=clientes;
     //O caixa precisa ter acesso ao estoque e aos clintes;
-  }
-
-  public void menuDeOpcoes(){
-    try{
-      limparTela();
-      print("Comandos que a caixa pode executar:");
-      print("0 para sair ");
-      print("1 para abrir uma comanda");
-      print("2 para fechar uma comanda");
-      print("3 para cadastrar um cliente");
-      Scanner ler=new Scanner(System.in);
-      switch(ler.nextInt()){
-        case 0:
-          print("saindo da tela");
-          break;
-        case 1:
-          abrirComanda(buscarCliente());
-          break;
-        case 2:
-          fecharComanda(buscarCliente());
-          break;
-        case 3:
-          cadastrarCliente();
-      }
-    }catch(Exception ex){
-      print(ex.getMessage());
-    }
   }
 
   public void abrirComanda(Cliente cliente){
@@ -112,11 +86,11 @@ public class Caixa implements Cargo{
           cliente.obtemComandaAberta().quitarComanda(new Dinheiro(valor));
       }
     }catch(Exception ex){
-    
+      print(ex.getMessage());
     }
   }
   
-  public Cliente cadastrarCliente(){
+  public Cliente cadastrarCliente()throws Exception{
     limparTela();
     Scanner ler=new Scanner(System.in);
     System.out.println("Nome: ");
@@ -125,10 +99,59 @@ public class Caixa implements Cargo{
     int cpf=ler.nextInt();
     System.out.println("Telefone: ");
     int telefone=ler.nextInt();
-    clientes.add(new Cliente(nome,cpf,telefone));
-    return new Cliente(nome,cpf,telefone);
+    Cliente c=new Cliente(nome,cpf,telefone);
+    if(!clientes.contains(c)){
+      clientes.add(c);
+      return c;
+    }
+    else
+      throw new Exception("cliente já cadastrado");
   }
 
+  public Comanda buscarComandaCodigo(int codigo) throws Exception{
+
+    for(Cliente c:clientes){
+      try{
+        return c.getComandaPorCodigo(codigo);
+      }catch(Exception ex){
+        
+      }
+    }
+    throw new Exception("Comanda não existe");
+    
+  }
+  
+  public void fazerPedido(Cliente cliente){
+    print("Caixa não pode fazer pedido");
+  }
+  
+ 
+
+  public Funcionario buscarFuncionario()throws Exception{
+    throw new Exception("Caixa não pode buscar Funcionário");
+  }
+  
+  public void demetirFuncionario(Funcionario funcionario){
+    print("Caixa não pode demitir funcionário ");
+  }
+  
+  public void cadastrarFuncionario(){
+    print("Caixa não pode cadastrar funcionário ");
+  }
+
+  public void repor(Produto produto){
+    print("Caixa não poderepor produtos ");
+  }
+  
+  public Produto buscarProduto()throws Exception{
+    throw new Exception("Caixa não pode buscar produtos");
+  }
+
+  public void cadastrarProduto(){
+    print("Caixa não pode cadastrar produto");
+  }
+
+  
   private void limparTela(){
     for(int i=0;i<20;i++)
       print("");

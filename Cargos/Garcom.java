@@ -1,5 +1,5 @@
 package Cargos;
-import Pessoas.Cliente;
+import Pessoas.*;
 import Cargos.Cargo;
 import Produtos.Produto;
 import Pedidos.Pedido;
@@ -15,39 +15,6 @@ public class Garcom implements Cargo{
     this.estoque=produtos;
     this.clientes=clientes;
     //O caixa precisa ter acesso ao estoque e aos clintes;
-  }
-
-  public void menuDeOpcoes(){
-    try{
-      limparTela();
-      print("Comandos que a caixa pode executar:");
-      print("0 para sair ");
-      print("1 para fazer pedido");
-      Scanner ler=new Scanner(System.in);
-      switch(ler.nextInt()){
-        case 0:
-          print("saindo da tela");
-          break;
-        case 1:
-          fazerPedido(buscarCliente());
-          break;
-      }
-    }catch(Exception ex){
-      print(ex.getMessage());
-    }
-  }
-
-  public Cliente cadastrarCliente(){
-    limparTela();
-    Scanner ler=new Scanner(System.in);
-    System.out.println("Nome: ");
-    String nome=ler.nextLine();
-    System.out.println("CPF: ");
-    int cpf=ler.nextInt();
-    System.out.println("Telefone: ");
-    int telefone=ler.nextInt();
-    clientes.add(new Cliente(nome,cpf,telefone));
-    return new Cliente(nome,cpf,telefone);
   }
 
   
@@ -75,7 +42,7 @@ public class Garcom implements Cargo{
             pedido.adicionarProduto(t.colocarNoCarinho(leitura.nextInt()));
           }
         }
-      }while(ind!=0);
+      }while(ind!=-1);
       
       limparTela();
       print("aperte 1 para confirmar");
@@ -135,7 +102,57 @@ public class Garcom implements Cargo{
       throw new Exception("Erro na busca da comanda do cliente: "+cliente.getCPF());
     }
   }
+
+  public void abrirComanda(Cliente cliente){
+    print("Mande o cliente ao caixa para fazer o cadastro");
+  }
  
+  public void fecharComanda(Cliente cliente){
+    print("Mande o clinte ao caixa");
+  }
+  
+  public Cliente cadastrarCliente()throws Exception{
+    throw new Exception("Garçom não pode cadastrar funcionário");
+  }
+  
+  public Comanda buscarComandaCodigo(int codigo) throws Exception{
+
+    for(Cliente c:clientes){
+      try{
+        return c.getComandaPorCodigo(codigo);
+      }catch(Exception ex){
+        
+      }
+    }
+    throw new Exception("Comanda não existe");
+    
+  }
+
+
+
+  public Funcionario buscarFuncionario()throws Exception{
+    throw new Exception("Garçom porque se quer buscar os dados de um funcionário?");
+  }
+  public void demetirFuncionario(Funcionario funcionario){
+    
+    print("Garçom porque se quer demitir um funcionário?");
+  
+  }
+  public void cadastrarFuncionario(){
+     print("Garçom porque se quer cadastrar um funcionário?");
+  }
+
+  public void repor(Produto produto){
+     print("Garçom se não pode repor os produtos");
+  }
+  public Produto buscarProduto()throws Exception{
+    throw new Exception("Se não pode mexer no estoque");
+  }
+
+  public void cadastrarProduto(){
+    print("caixa não cadastra produto");
+  }
+  
   private void menuMostraProdutos(){
     for(Produto t:estoque){
       t.descrisaoVenda();

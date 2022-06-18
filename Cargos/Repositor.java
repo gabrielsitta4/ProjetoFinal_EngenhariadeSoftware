@@ -3,6 +3,8 @@ import Pessoas.Cliente;
 import Cargos.Cargo;
 import Produtos.*;
 import java.util.*;
+import Comandas.*;
+import Pessoas.*;
 
 public class Repositor implements Cargo{
 
@@ -50,7 +52,7 @@ public class Repositor implements Cargo{
     print("produto cadastrado com sucesso");
   }
 
-  public void repor(Produto produto)throws Exception{
+  public void repor(Produto produto){
     limpaTela();
     print("informe a quantidade: ");
     int quantidade=ler.nextInt();
@@ -71,11 +73,46 @@ public class Repositor implements Cargo{
     throw new Exception(" produto não encontrado");
     
   }
+
   
   public String descrisao(){
     return "Repositor";
   }
 
+    public void abrirComanda(Cliente cliente){
+      print("Cargo de repositor não tem permissão para executar essa função");
+    }
+  public Cliente buscarCliente()throws Exception{
+    throw new Exception("Cargo de repositor não tem permissão para executar essa função");
+  }
+  public Comanda buscarComandaPorCliente()throws Exception{
+    throw new Exception("Cargo de repositor não tem permissão para executar essa função");
+  }
+  public void fecharComanda(Cliente cliente){
+    print("Cargo de repositor não tem permissão para executar essa função");
+  }
+  public Cliente cadastrarCliente()throws Exception{
+    throw new Exception("Cargo de repositor não tem permissão para executar essa função");
+  }
+  public Comanda buscarComandaCodigo(int codigo)throws Exception{
+    throw new Exception("Cargo de repositor não tem permissão para executar essa função");
+  }
+
+  public void fazerPedido(Cliente cliente)throws Exception{
+    throw new Exception("Cargo de repositor não tem permissão para executar essa função");
+  }
+
+  public Funcionario buscarFuncionario()throws Exception{
+    throw new Exception("Cargo de repositor não tem permissão para executar essa função");
+  }
+  public void demetirFuncionario(Funcionario funcionario){
+    print("Cargo de repositor não tem permissão para executar essa função");
+  }
+  public void cadastrarFuncionario(){
+    print("Cargo de repositor não tem permissão para executar essa função");
+  }
+
+  
   private void limpaTela(){
     for(int i=0;i<20;i++)
       print("");

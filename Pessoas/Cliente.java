@@ -28,6 +28,18 @@ public class Cliente extends Pessoa{
     fazerCadastro();
   }
 
+  public Cliente(int cpf){
+    this.cpf=cpf;
+  }
+  
+  @Override
+  public boolean equals(Object cliente){
+    if(cliente instanceof Cliente)
+      return this.getCPF()==((Cliente)cliente).getCPF();
+    else
+      return false;
+  }
+
   public int getCPF(){
     return cpf;
   }
@@ -84,8 +96,24 @@ public class Cliente extends Pessoa{
     return comandas.get(ind);
   }
 
+  public Comanda getComandaPorCodigo(int codigo)throws Exception{
+    
+    if(possuiComanda(codigo)){
+      for(Comanda c: comandas){
+        if(c.getCodigo()==codigo)
+          return c;
+      }
+    }
+    
+     throw new Exception("Cliente não possui comanda");
+    
+  }
   
+  public boolean possuiComanda(int cod){
+    return comandas.contains(new Comanda(cod));
+  }
 
+  
   public void fecharComanda(){
     if(possuiComandaDivida()){
       estado=new ComPendencia();
