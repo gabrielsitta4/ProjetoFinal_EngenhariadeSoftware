@@ -55,17 +55,17 @@ public class Cliente extends Pessoa{
   public void abrirComanda()throws Exception{
     if(estado instanceof ComCadastro){
       comandas.add(new Comanda());
+      estado=new ComPendencia();
     }else
-      throw new Exception(estado.descrisao());
+      throw new Exception("cliente inadimplemte");
   }
   
   public void fazerPedido(Pedido pedido)throws Exception{
-    if(estado instanceof ComCadastro){
-      obtemComandaAberta().adicionarPedido(pedido);
-      estado.fazerPedido();
-    }
-    else
-      throw new Exception(estado.descrisao());
+    try {
+     obtemComandaAberta().adicionarPedido(pedido);
+    }catch(Exception ex){
+      throw new Exception(ex.getMessage());
+    }  
       
   }
   

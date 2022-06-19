@@ -45,7 +45,7 @@ public class Comanda{
 
   
   public void quitarComanda(FormaDePagamento pag)throws Exception{
-    if(pag.getValorPagamento()==this.valorDaComanda()){
+    if(pag.getValorPagamento()>=this.valorDaComanda()){
       quitada=true;
       forma=pag;
       

@@ -18,10 +18,10 @@ public class Garcom implements Cargo{
   }
 
   
-  public void fazerPedido(Cliente cliente)throws Exception{
+  public void fazerPedido(Comanda comanda)throws Exception{
     Pedido pedido = new Pedido();
-    if(!(cliente.getEstado() instanceof ComCadastro)){
-      throw new Exception("Cliente com cadastro com falha");
+    if(comanda.getQuitada()){
+      throw new Exception("Comanda já quitadada");
     }
     
     Scanner leitura = new Scanner(System.in);
@@ -53,7 +53,7 @@ public class Garcom implements Cargo{
           
         }
         pedido=new Pedido(pedido.getCodigo(),produtos);
-        cliente.obtemComandaAberta().adicionarPedido(pedido);
+        comanda.adicionarPedido(pedido);
         }
         
     }catch(Exception ex){

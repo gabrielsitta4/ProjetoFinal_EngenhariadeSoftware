@@ -15,7 +15,7 @@ public interface Cargo{
   public Cliente cadastrarCliente()throws Exception;
   public Comanda buscarComandaCodigo(int codigo)throws Exception;
 
-  public void fazerPedido(Cliente cliente)throws Exception;
+  public void fazerPedido(Comanda comanda)throws Exception;
 
   public Funcionario buscarFuncionario()throws Exception;
   public void demetirFuncionario(Funcionario funcionario);

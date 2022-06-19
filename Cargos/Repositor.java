@@ -15,7 +15,7 @@ public class Repositor implements Cargo{
     ler=new Scanner(System.in);
   }
   
-  }
+  
   public void cadastrarProduto(){
     limpaTela();
     print("informe o valor do produto:");
@@ -83,7 +83,7 @@ public class Repositor implements Cargo{
     throw new Exception("Cargo de repositor não tem permissão para executar essa função");
   }
 
-  public void fazerPedido(Cliente cliente)throws Exception{
+  public void fazerPedido(Comanda comanda)throws Exception{
     throw new Exception("Cargo de repositor não tem permissão para executar essa função");
   }
 

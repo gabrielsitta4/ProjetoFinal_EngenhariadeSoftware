@@ -22,6 +22,7 @@ public class Caixa implements Cargo{
       cliente.abrirComanda();
       limparTela();
       System.out.println("Comanda Aberta com sucesso");
+      print("codigo da comanda: "+cliente.obtemComandaAberta().getCodigo());
     }catch(Exception ex){
       System.out.println(ex);
     }
@@ -77,6 +78,9 @@ public class Caixa implements Cargo{
       ind=ler.nextInt();
       
         double valor =cliente.obtemComandaAberta().valorDaComanda();
+      print("em caso de perda de comanda ou aperte 0");
+      if(ler.nextInt()==0)
+      valor+=10;
         switch(ind){
           case 0:
             cliente.quitardividas(new Pix(valor));
@@ -123,7 +127,7 @@ public class Caixa implements Cargo{
     
   }
   
-  public void fazerPedido(Cliente cliente){
+  public void fazerPedido(Comanda comanda){
     print("Caixa não pode fazer pedido");
   }
   

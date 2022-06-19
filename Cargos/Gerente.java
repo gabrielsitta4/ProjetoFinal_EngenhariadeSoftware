@@ -37,18 +37,23 @@ public class Gerente implements Cargo{
   }
 
   public void demetirFuncionario(Funcionario funcionario){
-    limpaTela();
-    print("Deseja demetir o funcionário "+funcionario.descrisao()+" aperte 0");
-    if(ler.nextInt()==0){
-      funcionarios.remove(funcionario);
+    try{
+      limpaTela();
+      print("Deseja demetir o funcionário "+funcionario.descrisao()+" aperte 0");
+      if(ler.nextInt()==0){
+        funcionarios.remove(funcionario);
+      }
+    }catch(Exception ex){
+      print("funcionário não achado");
     }
-    
+   
   }
   
   public void cadastrarFuncionario(){
     limpaTela();
+    Scanner lerString =new Scanner(System.in);
     print("nome do funcionário");
-    String nome=ler.nextLine();
+    String nome=lerString.nextLine();
     print("CPF do funcionário");
     int cpf=ler.nextInt();
     print("telefone do funcionário");
@@ -56,10 +61,11 @@ public class Gerente implements Cargo{
     print("RG do funcionário");
     int rg=ler.nextInt();
     print("Endereço do funcionário");
-    String end=ler.nextLine();
+    String end=lerString.nextLine();
     print("Email do funcionário");
-    String email=ler.nextLine();
-
+    String email=lerString.nextLine();
+    print("Digite a senha do usuário");
+    String senha=lerString.nextLine();
 
     print("Caixa 0");
     print("Garçom 1");
@@ -85,9 +91,19 @@ public class Gerente implements Cargo{
           cargo =new  Garcom(produtos,clientes);
         break;
     }
-    
-    if(funcionarios.add( new Funcionario(nome,cpf, telefone, rg, end, email, cargo))){
-      print("funcionário  cadastrado com sucesso");
+
+    Funcionario func= new Funcionario(nome,cpf, telefone, rg, end, email, cargo,senha); 
+
+    if(funcionarios.contains(func)){
+      print("Já existe um funcionário");
+    }
+    else{
+      print("confirmar aperte 0");
+      if(ler.nextInt()==0){
+        funcionarios.add(func);
+        print("funcionário  cadastrado com sucesso");
+      }else
+        print("Ok patrão, funcionário não cadastrado");
     }
   }
 
@@ -110,7 +126,7 @@ public class Gerente implements Cargo{
     throw new Exception("Cargo de gerente não tem permissão pra fazer isso");
   }
 
-  public void fazerPedido(Cliente cliente)throws Exception{
+  public void fazerPedido(Comanda comanda)throws Exception{
     print("Cargo de gerente não tem permissão pra fazer isso");
   }
 
