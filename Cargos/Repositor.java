@@ -3,15 +3,19 @@ import Pessoas.Cliente;
 import Cargos.Cargo;
 import Produtos.*;
 import java.util.*;
+
+
 import Comandas.*;
 import Pessoas.*;
 
 public class Repositor implements Cargo{
 
   ArrayList<Produto> produtos;
+  Gerente gerente;
   Scanner ler ;
-  public Repositor(ArrayList<Produto> produto){
+  public Repositor(ArrayList<Produto> produto,Gerente gerente){
     this.produtos=produto;
+    this.gerente=gerente;
     ler=new Scanner(System.in);
   }
   
@@ -38,11 +42,15 @@ public class Repositor implements Cargo{
   }
 
   public void repor(Produto produto){
-    limpaTela();
-    print("informe a quantidade: ");
-    int quantidade=ler.nextInt();
-    produto.reporProduto(quantidade);
-    print("Produto foi reposto");
+    try{
+      limpaTela();
+      print("informe a quantidade: ");
+      int quantidade=ler.nextInt();
+      produto.reporProduto(quantidade);
+      print("Produto foi reposto");
+    }catch(Exception ex){
+      print(ex.getMessage());
+    }
   }
   
   public Produto buscarProduto()throws Exception{
@@ -61,7 +69,7 @@ public class Repositor implements Cargo{
 
   
   public String descrisao(){
-    return "Repositor";
+    return "Repositor"+" existem tantos produtos abaixo do limite: "+this.getProdutosAbaixoDoLimite().size();
   }
 
     public void abrirComanda(Cliente cliente){
@@ -97,11 +105,49 @@ public class Repositor implements Cargo{
     print("Cargo de repositor não tem permissão para executar essa função");
   }
 
+  public void gerarNotificacao(Funcionario funcionario){
+    limpaTela();
+    print("Produtos abaixo do limite");
+    for(Produto p:this.getProdutosAbaixoDoLimite()){
+      print("produto "+p.getCodigo()+" está abaixo do limite, só tem essa quantidade "+p.getQuantidade());
+    }
+    
+    print("deseja informar o gerente sobre os produtos em falta aperte 0");
+    if(ler.nextInt()==0){
+      String mensagem="O repositor "+funcionario.getNome()+" informa que os produtos estão abaixo do limite";  
+      int ind=0;
+        for(Produto p:this.getProdutosAbaixoDoLimite()){
+          mensagem+="\nproduto "+p.getCodigo()+" está abaixo do limite, só tem essa quantidade "+p.getQuantidade();
+          ind++;
+      }
+      if(ind>0){
+        gerente.adicionarNotificao(mensagem);
+      }
+    }
+
+    print("quer informar o gerente sobre algo mais aperte 0:");
+    if(ler.nextInt()==0){
+      Scanner leitura=new Scanner(System.in);
+      gerente.adicionarNotificao("nome :"+funcionario.getNome()+" cargo:"+"Repositor"+" informa que: "+leitura.nextLine());
+    }
+  }
+
+
+  private ArrayList<Produto> getProdutosAbaixoDoLimite(){
+    ArrayList<Produto> pr=new ArrayList<Produto>(); 
+    for(Produto p:this.produtos){
+        if(p.getQuantidade()*100/p.getQuantidadeMaxima()<=20.0){
+          pr.add(p);
+        }
+      }
+    return pr;
+  }
   
   private void limpaTela(){
     for(int i=0;i<20;i++)
       print("");
   }
+  
 
   private void mostraProduto(){
     for(Produto t: produtos){

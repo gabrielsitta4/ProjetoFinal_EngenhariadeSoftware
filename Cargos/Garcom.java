@@ -10,11 +10,12 @@ import java.util.*;
 public class Garcom implements Cargo{
   ArrayList<Produto> estoque;
   ArrayList<Cliente> clientes;
-  
-  public Garcom(ArrayList<Produto> produtos,ArrayList<Cliente> clientes){
+  Gerente gerente;
+  public Garcom(ArrayList<Produto> produtos,ArrayList<Cliente> clientes,Gerente gerente){
     this.estoque=produtos;
     this.clientes=clientes;
     //O caixa precisa ter acesso ao estoque e aos clintes;
+    this.gerente=gerente;
   }
 
   
@@ -150,7 +151,15 @@ public class Garcom implements Cargo{
   }
 
   public void cadastrarProduto(){
-    print("caixa não cadastra produto");
+    print("Garçom não cadastra produto");
+  }
+  public void gerarNotificacao(Funcionario funcionario){
+    Scanner ler =new Scanner(System.in);
+    print("quer informar o gerente aperte 0:");
+    if(ler.nextInt()==0){
+      Scanner leitura=new Scanner(System.in);
+      gerente.adicionarNotificao("nome :"+funcionario.getNome()+" cargo:"+this.descrisao()+" informa que: "+leitura.nextLine());
+    }
   }
   
   private void menuMostraProdutos(){

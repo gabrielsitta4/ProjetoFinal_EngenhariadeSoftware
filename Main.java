@@ -19,18 +19,19 @@ class Main {
     ArrayList<Funcionario> funcionarios=new ArrayList<Funcionario>();
     ArrayList<Produto> produtos=new ArrayList<Produto>();
     
-   
-    funcionarios.add(new Funcionario("adm",000,000,0000,"adm","adm"+'@'+"gmail.com",new Gerente(funcionarios,produtos,clientes),"1"));
+   Gerente gerente=new Gerente(funcionarios,produtos,clientes);
+    funcionarios.add(new Funcionario("adm",000,000,0000,"adm","adm"+'@'+"gmail.com",gerente,"1"));
     
-    funcionarios.add(new Funcionario("caixa",1,000,1,"adm","adm"+'@'+"gmail.com",new Caixa(clientes),"10"));
-    funcionarios.add(new Funcionario("caixa",2,000,2,"adm","adm"+'@'+"gmail.com",new Garcom(produtos,clientes),"10"));
-    funcionarios.add(new Funcionario("caixa",3,000,3,"adm","adm"+'@'+"gmail.com",new Repositor(produtos),"10"));
+    funcionarios.add(new Funcionario("caixa",1,000,1,"adm","adm"+'@'+"gmail.com",new Caixa(clientes,gerente),"10"));
+    funcionarios.add(new Funcionario("caixa",2,000,2,"adm","adm"+'@'+"gmail.com",new Garcom(produtos,clientes,gerente),"10"));
+    funcionarios.add(new Funcionario("caixa",3,000,3,"adm","adm"+'@'+"gmail.com",new Repositor(produtos,gerente),"10"));
 
     clientes.add(new Cliente("joão",4,151515,new ComCadastro()));
 
 
     
     Funcionario funcionario=funcionarios.get(0);
+    
     int ind=-1;
     Scanner ler = new Scanner(System.in);
     while(ind!=0){
@@ -51,6 +52,7 @@ class Main {
       print("12 Mudar de funcionario");
       print("13 cadastras produto");
       print("14 buscar produto");
+      print("15 notificações");
       ind=ler.nextInt();
        limpaTela();
       try{
@@ -100,6 +102,9 @@ class Main {
 
           case 14:
             funcionario.buscarProduto();
+            break;
+          case 15:
+            funcionario.gerarNotificacao();
             break;
        }
        

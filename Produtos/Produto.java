@@ -23,6 +23,14 @@ public class Produto{
   public int getCodigo(){
     return codproduto;
   }
+
+   public int getQuantidade(){
+    return quantidade;
+  }
+
+   public int getQuantidadeMaxima(){
+    return quantidademaxima;
+  }
   
   public double getValor(){
     return this.valor;
@@ -42,8 +50,11 @@ public class Produto{
                        +" descrisao: "+descrisao);
   }
   
-  public void reporProduto(int quantidade){
-    this.quantidade+=quantidade;
+  public void reporProduto(int quantidade)throws Exception{
+    if(this.quantidade+quantidade<=quantidademaxima)
+      this.quantidade+=quantidade;
+    else
+      throw new Exception("quantidade de prdutos acima do estoque permitido");
   }
 
   public ArrayList<Produto> venderProdutos(int quat){

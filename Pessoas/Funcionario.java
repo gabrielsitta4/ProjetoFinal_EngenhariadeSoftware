@@ -37,6 +37,9 @@ public class Funcionario extends Pessoa{
   public String descrisao(){
     return "Nome: "+nome+" cpf: "+cpf+" Cargo: "+cargo.descrisao();
   }
+  public String getNome(){
+    return nome;
+  }
 
   public int getCPF(){
     return cpf;
@@ -95,6 +98,9 @@ public class Funcionario extends Pessoa{
   }
   public void cadastrarProduto(){
     cargo.cadastrarProduto();
+  }
+  public void gerarNotificacao(){
+    cargo.gerarNotificacao(this);
   }
 
    

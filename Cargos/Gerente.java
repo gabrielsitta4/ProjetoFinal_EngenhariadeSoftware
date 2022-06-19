@@ -12,17 +12,20 @@ public class Gerente implements Cargo{
   ArrayList<Funcionario> funcionarios;
   ArrayList<Produto> produtos;
   ArrayList<Cliente> clientes;
+  ArrayList<String>notificacoes;
   public Gerente(ArrayList<Funcionario> funcionarios,ArrayList<Produto> produtos,ArrayList<Cliente> cliente){
     this.funcionarios=funcionarios;
     this.produtos=produtos;
     this.clientes=cliente;
+    this.notificacoes=new ArrayList<String>();
    ler=new Scanner(System.in);
   }
   
   
   
   public String descrisao(){
-    return "Gerente";
+    
+    return "Gerente"+(this.notificacoes.size()>0?" você possui notificações":"");
   }
 
   public Funcionario buscarFuncionario()throws Exception{
@@ -76,19 +79,19 @@ public class Gerente implements Cargo{
     
     switch(ler.nextInt()){
       case 0:
-        cargo=new Caixa(clientes);
+        cargo=new Caixa(clientes,this);
         break;
       case 3 :
         cargo=new Gerente(funcionarios,produtos,clientes);
         break;
       case 2 :
-        cargo=new Repositor(produtos);
+        cargo=new Repositor(produtos,this);
         break ;
       case 1 :
-        cargo=new Garcom(produtos,clientes);
+        cargo=new Garcom(produtos,clientes,this);
         break;
       default:
-          cargo =new  Garcom(produtos,clientes);
+          cargo =new  Garcom(produtos,clientes,this);
         break;
     }
 
@@ -139,6 +142,23 @@ public class Gerente implements Cargo{
   }
   public void cadastrarProduto(){
     print("caixa não cadastra produto");
+  }
+  public void adicionarNotificao(String not){
+    this.notificacoes.add(not);
+  }
+
+  public void gerarNotificacao(Funcionario funcionario){
+    if(notificacoes.size()>0)
+      for(String s:notificacoes)
+        print(s);
+    else
+        print("sem notificações");
+    print("deseja apaga-las aperte 0");
+    if(ler.nextInt()==0){
+      notificacoes.clear();
+    }
+    
+    
   }
   
   private void limpaTela(){

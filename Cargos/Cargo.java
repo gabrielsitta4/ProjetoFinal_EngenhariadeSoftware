@@ -25,4 +25,5 @@ public interface Cargo{
   public Produto buscarProduto()throws Exception;
   public void cadastrarProduto();
   public String descrisao();
+  public void gerarNotificacao(Funcionario funcionario);
 }
