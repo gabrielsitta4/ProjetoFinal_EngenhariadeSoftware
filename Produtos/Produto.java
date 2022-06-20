@@ -1,25 +1,38 @@
 package Produtos;
 import java.util.ArrayList;
 
-import com.sun.source.doctree.SystemPropertyTree;
-
 public class Produto{
   static int ind=0;
   private int codproduto;
   private double valor;
+  private double valorDeCompra;
   private String descrisao;
   private String fornecedor;
   private int quantidade;
   private int quantidademaxima;
 
-  public Produto(int codigo,double valor,String descrisao,String fornecedor,int quant,int quantidademaxima){
+  public Produto(int codigo,double valor,String descrisao,String fornecedor,int quant,int quantidademaxima,double valorCompra){
     inicaliza(codigo,valor,descrisao,fornecedor,quant,quantidademaxima);
+    this.valorDeCompra=valorCompra;
   }
   
-  public Produto(double valor,String descrisao,String fornecedor,int quant,int quantidademaxima){
+  public Produto(double valor,String descrisao,String fornecedor,int quant,int quantidademaxima,double valorCompra){
     inicaliza(ind++,valor,descrisao,fornecedor,quant,quantidademaxima);
+    this.valorDeCompra=valorCompra;
   }
 
+  public Produto(int codigo){
+    this.codproduto=codigo;
+  }
+
+  public Produto copia(){
+    return new Produto(codproduto , valor, descrisao, fornecedor, quantidade, quantidademaxima, valorDeCompra);
+  }
+
+public Produto copia(int quant){
+    return new Produto(codproduto , valor, descrisao, fornecedor, quant, quantidademaxima, valorDeCompra);
+  }
+  
   public int getCodigo(){
     return codproduto;
   }
@@ -31,10 +44,15 @@ public class Produto{
    public int getQuantidadeMaxima(){
     return quantidademaxima;
   }
+
+  public double getValorPagado(){
+    return valorDeCompra;
+  }
   
   public double getValor(){
     return this.valor;
   }
+  
   
   public void descrisaoCompleta(){
     System.out.println("codigo: "+codproduto
@@ -44,6 +62,9 @@ public class Produto{
                        " quantidade no estoque:"+quantidade);
   }
 
+  public String getDescrisao(){
+    return descrisao;
+  }
   public void descrisaoVenda(){
     System.out.println("codigo: "+codproduto
                        +"valor:"+valor
@@ -82,6 +103,14 @@ public class Produto{
       System.out.println("não tem produtos suficiente");
     
     return lista;
+  }
+
+  @Override
+  public boolean equals(Object produto){
+    if(produto instanceof Produto ){
+      return ((Produto)produto).getCodigo()==this.getCodigo();
+    }else
+      return false;
   }
   
   private void inicaliza(int codigo,double valor,String descrisao,String fornecedor,int quant,int quantidademaxima){

@@ -3,7 +3,7 @@ import Pessoas.Cliente;
 import Cargos.Cargo;
 import Produtos.*;
 import java.util.*;
-
+import Relatorios.RelatorioCompra;
 
 import Comandas.*;
 import Pessoas.*;
@@ -13,9 +13,11 @@ public class Repositor implements Cargo{
   ArrayList<Produto> produtos;
   Gerente gerente;
   Scanner ler ;
+  RelatorioCompra compra;
   public Repositor(ArrayList<Produto> produto,Gerente gerente){
     this.produtos=produto;
     this.gerente=gerente;
+    compra=gerente.getCompras();
     ler=new Scanner(System.in);
   }
   
@@ -24,20 +26,22 @@ public class Repositor implements Cargo{
     limpaTela();
     print("informe o valor do produto:");
     double valor=ler.nextFloat();
-    
-    String descrisao="";
+    Scanner lerString=new Scanner(System.in);
     print("informe a descrisão");
-    do{descrisao=ler.nextLine();}while(descrisao!="");
+    String descrisao=lerString.nextLine();
+
+    print("informe a fornecedor");
+    String fornecedor=lerString.nextLine();
     
-    String fornecedor="";
-    print("informe a descrisão");
-    do{fornecedor=ler.nextLine();}while(fornecedor!="");
     
     print("quantidade");
     int quant=ler.nextInt();
     print("quantidade máxima");
     int quantidademaxima=ler.nextInt();
-    produtos.add(new Produto(valor,descrisao,fornecedor,quant,quantidademaxima));
+    Produto produto=new Produto(valor*1.15,descrisao,fornecedor,quant,quantidademaxima,valor);
+    produtos.add(produto);
+    compra.adicionar(produto.copia());
+    
     print("produto cadastrado com sucesso");
   }
 
@@ -47,7 +51,8 @@ public class Repositor implements Cargo{
       print("informe a quantidade: ");
       int quantidade=ler.nextInt();
       produto.reporProduto(quantidade);
-      print("Produto foi reposto");
+      compra.adicionar(produto.copia(quantidade));
+     print("Produto foi reposto");
     }catch(Exception ex){
       print(ex.getMessage());
     }
@@ -132,7 +137,9 @@ public class Repositor implements Cargo{
     }
   }
 
-
+  public void gerarRelatorio(){
+    print("Repositor não tem permissão pra gerar o relatório");
+  }
   private ArrayList<Produto> getProdutosAbaixoDoLimite(){
     ArrayList<Produto> pr=new ArrayList<Produto>(); 
     for(Produto p:this.produtos){

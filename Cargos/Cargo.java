@@ -26,4 +26,5 @@ public interface Cargo{
   public void cadastrarProduto();
   public String descrisao();
   public void gerarNotificacao(Funcionario funcionario);
+  public void gerarRelatorio();
 }

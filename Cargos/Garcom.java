@@ -161,6 +161,11 @@ public class Garcom implements Cargo{
       gerente.adicionarNotificao("nome :"+funcionario.getNome()+" cargo:"+this.descrisao()+" informa que: "+leitura.nextLine());
     }
   }
+
+  public void gerarRelatorio(){
+    print("não tem permissão pra gerar um relatório");
+  }
+  
   
   private void menuMostraProdutos(){
     for(Produto t:estoque){

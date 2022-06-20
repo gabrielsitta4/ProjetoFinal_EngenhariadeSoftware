@@ -42,6 +42,9 @@ public class Comanda{
     return quitada;
   }
 
+  public ArrayList<Pedido> getPedidos(){
+   return pedidos;
+  }
 
   
   public void quitarComanda(FormaDePagamento pag)throws Exception{

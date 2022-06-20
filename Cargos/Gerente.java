@@ -4,7 +4,7 @@ import java.util.*;
 import Comandas.*;
 import Cargos.*;
 import Produtos.*;
-
+import Relatorios.*;
 
 public class Gerente implements Cargo{
 
@@ -13,15 +13,25 @@ public class Gerente implements Cargo{
   ArrayList<Produto> produtos;
   ArrayList<Cliente> clientes;
   ArrayList<String>notificacoes;
+  RelatorioDeVenda vendas;
+  RelatorioCompra compras;
   public Gerente(ArrayList<Funcionario> funcionarios,ArrayList<Produto> produtos,ArrayList<Cliente> cliente){
     this.funcionarios=funcionarios;
     this.produtos=produtos;
     this.clientes=cliente;
     this.notificacoes=new ArrayList<String>();
    ler=new Scanner(System.in);
+    this.vendas=new RelatorioDeVenda();
+    this.compras=new RelatorioCompra();
   }
   
+  public RelatorioDeVenda getVendas(){
+    return vendas;
+  }
   
+  public RelatorioCompra getCompras(){
+    return compras;
+  }
   
   public String descrisao(){
     
@@ -79,7 +89,7 @@ public class Gerente implements Cargo{
     
     switch(ler.nextInt()){
       case 0:
-        cargo=new Caixa(clientes,this);
+        cargo=new Caixa(clientes,this,vendas);
         break;
       case 3 :
         cargo=new Gerente(funcionarios,produtos,clientes);
@@ -159,6 +169,11 @@ public class Gerente implements Cargo{
     }
     
     
+  }
+
+  public void gerarRelatorio(){
+    vendas.gerarRelatorio();
+    compras.gerarRelatorio();
   }
   
   private void limpaTela(){

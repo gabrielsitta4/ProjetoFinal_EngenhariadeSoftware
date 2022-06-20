@@ -103,5 +103,8 @@ public class Funcionario extends Pessoa{
     cargo.gerarNotificacao(this);
   }
 
+  public void gerarRelatorio(){
+    cargo.gerarRelatorio();
+  }
    
 }

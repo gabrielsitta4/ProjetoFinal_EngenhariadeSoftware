@@ -23,6 +23,10 @@ public class Pedido{
   public int getCodigo(){
     return codpedido;
   }
+
+  public ArrayList<Produto> getProdutos(){
+    return lista;
+  }
   
   public Produto getProduto(int ind){
     return lista.get(ind);

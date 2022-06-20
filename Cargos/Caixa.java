@@ -2,21 +2,26 @@ package Cargos;
 import Cargos.Cargo;
 import EstadosDeClientes.*;
 import FormasDePagamentos.*;
+import Pedidos.Pedido;
+
 import java.util.*;
 import Comandas.Comanda;
 import EstadosDeClientes.*;
 import Pessoas.*;
 import Produtos.*;
+import Relatorios.*;
 
 public class Caixa implements Cargo{
 
 
   ArrayList<Cliente> clientes;
   Gerente gerente;
-  public Caixa(ArrayList<Cliente> clientes,Gerente gerente){
+  RelatorioDeVenda vendas;
+  public Caixa(ArrayList<Cliente> clientes,Gerente gerente,RelatorioDeVenda vendas){
     this.clientes=clientes;
     this.gerente=gerente;
     //O caixa precisa ter acesso ao estoque e aos clintes;
+    this.vendas=vendas;
   }
 
   public void abrirComanda(Cliente cliente){
@@ -80,6 +85,10 @@ public class Caixa implements Cargo{
       ind=ler.nextInt();
       
         double valor =cliente.obtemComandaAberta().valorDaComanda();
+
+      for(Pedido pedido:cliente.obtemComandaAberta().getPedidos()){
+        vendas.adicionar(pedido.getProdutos());
+      }
       print("em caso de perda de comanda ou aperte 0");
       if(ler.nextInt()==0)
       valor+=10;
@@ -93,6 +102,7 @@ public class Caixa implements Cargo{
           default:
             cliente.quitardividas(new Dinheiro(valor));
         }
+      
     }catch(Exception ex){
       print(ex.getMessage());
     }
@@ -167,7 +177,11 @@ public class Caixa implements Cargo{
       gerente.adicionarNotificao("nome :"+funcionario.getNome()+" cargo:"+this.descrisao()+" informa que: "+leitura.nextLine());
     }
   }
-  
+
+  public void gerarRelatorio(){
+    print("não tem permissão pra gerar um relatório");
+  }
+
   private void limparTela(){
     for(int i=0;i<20;i++)
       print("");

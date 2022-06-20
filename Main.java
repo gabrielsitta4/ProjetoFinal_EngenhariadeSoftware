@@ -8,6 +8,7 @@ import Cargos.*;
 import Comandas.*;
 import EstadosDeClientes.*;
 import Pedidos.*;
+import Relatorios.*;
 import Produtos.*;
 
 
@@ -22,7 +23,7 @@ class Main {
    Gerente gerente=new Gerente(funcionarios,produtos,clientes);
     funcionarios.add(new Funcionario("adm",000,000,0000,"adm","adm"+'@'+"gmail.com",gerente,"1"));
     
-    funcionarios.add(new Funcionario("caixa",1,000,1,"adm","adm"+'@'+"gmail.com",new Caixa(clientes,gerente),"10"));
+    funcionarios.add(new Funcionario("caixa",1,000,1,"adm","adm"+'@'+"gmail.com",new Caixa(clientes,gerente,gerente.getVendas()),"10"));
     funcionarios.add(new Funcionario("caixa",2,000,2,"adm","adm"+'@'+"gmail.com",new Garcom(produtos,clientes,gerente),"10"));
     funcionarios.add(new Funcionario("caixa",3,000,3,"adm","adm"+'@'+"gmail.com",new Repositor(produtos,gerente),"10"));
 
@@ -38,21 +39,22 @@ class Main {
       print(funcionario.descrisao());
       print("selecionae :");
       print("0 para sair");
-      print("1 abrirComanda");
+      print("1 abrir Comanda");
       print("2 buscarCliente");
-      print("3 buscarComandaPorCliente");
-      print("4 fecharComanda");
-      print("5 cadastrarCliente");
-      print("6 buscarComandaCodigo");
-      print("7 fazerPedido");
-      print("8 buscarFuncionario");
-      print("9 demetirFuncionario");
-      print("10 cadastrarFuncionario");
+      print("3 buscar Comanda Por Cliente");
+      print("4 fechar Comanda");
+      print("5 cadastrar Cliente");
+      print("6 buscar Comanda por Codigo");
+      print("7 fazer Pedido");
+      print("8 buscar Funcionario");
+      print("9 demetir Funcionario");
+      print("10 cadastrar Funcionario");
       print("11 repor");
       print("12 Mudar de funcionario");
       print("13 cadastras produto");
       print("14 buscar produto");
       print("15 notificações");
+      print("16 gerar relatorio");
       ind=ler.nextInt();
        limpaTela();
       try{
@@ -105,6 +107,9 @@ class Main {
             break;
           case 15:
             funcionario.gerarNotificacao();
+            break;
+          case 16:
+              funcionario.gerarRelatorio();
             break;
        }
        
